@@ -11,16 +11,22 @@ Run the following command on your local environment:
     ```sh
     git clone https://github.com/kielchang/my-react-redux-app
     cd my-react-redux-app
-    yarn add
+    yarn install
     ```
 
 Get an API Key at [中央氣象局開放資料平臺](https://opendata.cwb.gov.tw/devManual/insrtuction)
 
-Then, Create `.env` file and enter your API key in `.env`
+Create `.env` file and enter your API key in `.env`
 
 ```
 REACT_APP_WEATHER_API_KEY = ENTER YOUR API;
 ```
+
+Then, you can run locally in development mode with live reload:
+```sh
+yarn start
+```
+Open [http://localhost:3000](http://localhost:3000) with your favorite browser to see your project.
 
 ## Available Scripts
 
