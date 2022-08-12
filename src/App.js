@@ -1,10 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { doWeatherFetch } from "./redux/actions/weatherAction";
 import { getWeatherIsFetch, getWeatherProfile } from "./redux/selectors/weatherSelector";
 
-function App({ onFetchWeather, weatherIsFetch, weatherProfile }) {
+function App() {
+  const dispatch = useDispatch();
+  const weatherIsFetch = useSelector((state) => getWeatherIsFetch(state));
+  const weatherProfile = useSelector((state) => getWeatherProfile(state));
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,7 +20,7 @@ function App({ onFetchWeather, weatherIsFetch, weatherProfile }) {
           Learn React
         </a>
         <div style={{ margin: "20px", alignContent: "center" }}>
-          <button className="button-11" onClick={onFetchWeather}>
+          <button className="button-11" onClick={() => dispatch(doWeatherFetch())}>
             Fetch Weather
           </button>
           <p>{weatherProfile}</p>
@@ -26,13 +30,4 @@ function App({ onFetchWeather, weatherIsFetch, weatherProfile }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  weatherIsFetch: getWeatherIsFetch(state),
-  weatherProfile: getWeatherProfile(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFetchWeather: () => dispatch(doWeatherFetch()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
